@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<title>Sign-up</title>
+{% if error %}
+{{ error }}
+<br/>
+<br/>
+{% endif %}
+
+<h1>Sign Up</h1>
+  <form method="POST" action = "{% url "signup" %}" enctype="multipart/form-data">
+  {% csrf_token %}
+
+  Username:
+  <br/>
+  <input type = "text" name = "username"/>
+  <br/>
+
+  E-mail:
+  <br/>
+  <input type = "text" name = "email"/>
+  <br/>
+
+  Full name:
+  <br/>
+  <input type = "text" name = "full_name"/>
+  <br/>
+
+  Address:
+  <br/>
+  <input type = "text" name = "address"/>
+  <br/>
+
+  Gender:
+  <br/>
+  <input type="radio" name="gender" value="male"> Male<br>
+  <input type="radio" name="gender" value="female"> Female<br>
+  <input type="radio" name="gender" value="not" checked> Not interested to disclose<br>
+
+  Profile Picture:
+  <br/>
+  <input type = "file" name = "profile_picture"/>
+  <br/>
+  Password:
+  <br/>
+  <input type = "password" name = "password1">
+  <br/>
+  Confirm Password:
+  <br/>
+  <input type = "password" name = "password2">
+  <br/>
+  <br/>
+  <small>Do you want to recieve our promotional email?</small>
+  <br/>
+  <input type="radio" name="get_email" value="yes"> Yes<br>
+  <input type="radio" name="get_email" value="no"> No<br>
+
+  <input class = "btn btn-primary" type = "submit" value = "Sign up" />
+
+  </form>
+
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<title>Edit Profile</title>
+{% if error %}
+{{ error }}
+<br/>
+<br/>
+{% endif %}
+
+<h1>Edit profile</h1>
+  <form method="POST" action = "{% url "edit_save"  user.id %}" enctype="multipart/form-data">
+  {% csrf_token %}
+
+  Full name:
+  <br/>
+  <input type = "text" name = "full_name" value = "{{user.full_name}}" />
+  <br/>
+
+  Address:
+  <br/>
+  <input type = "text" name = "address" value = "{{user.address}}" />
+  <br/>
+
+  Gender:
+  {% if user.gender == 'male' %}
+  <br/>
+  <input type="radio" name="gender" value="male" checked> Male<br>
+  <input type="radio" name="gender" value="female"> Female<br>
+  <input type="radio" name="gender" value="not" > Not interested to disclose<br>
+  {% elif user.gender == 'female' %}
+  <br/>
+  <input type="radio" name="gender" value="male"> Male<br>
+  <input type="radio" name="gender" value="female" checked> Female<br>
+  <input type="radio" name="gender" value="not" > Not interested to disclose<br>
+  {% else %}
+  <br/>
+  <input type="radio" name="gender" value="male"> Male<br>
+  <input type="radio" name="gender" value="female" > Female<br>
+  <input type="radio" name="gender" value="not" checked> Not interested to disclose<br>
+
+  {% endif %}
+
+  Profile Picture:
+  <br/>
+  <input type = "file" name = "profile_picture" value = {{user.profile_picture.url}} />
+  <br/>
+
+  <small>Do you want to recieve our promotional email?</small>
+  <br/>
+  {% if user.get_email == 'yes' %}
+  <input type="radio" name="get_email" value="yes" checked> Yes<br>
+  <input type="radio" name="get_email" value="no"> No<br>
+  {% else %}
+  <input type="radio" name="get_email" value="yes"> Yes<br>
+  <input type="radio" name="get_email" value="no" checked> No<br>
+  {% endif %}
+
+  <input class = "btn btn-primary" type = "submit" value = "save" />
+
+  </form>
+
+{% endblock %}

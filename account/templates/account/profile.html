@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+<title>{{user.username}}<title>
+
+{% block content %}
+<h1>{{user.full_name}}</h1>
+<div class = "container">
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="{{user.profile_picture.url}}" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">Username: {{user.username}}</h5>
+    <h5>Gender: {{user.gender}}<h5>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><h5>E-mail: </h5>{{user.email}}</li>
+    <li class="list-group-item"><h5>Address: </h5><p>{{user.address}}</p></li>
+  </ul>
+  <div class="card-body">
+    <a href="{% url 'edit' user.id %}" class="card-link">Edit Profile</a>
+    <a href="#" class="card-link">Change Password</a>
+  </div>
+</div>
+</div>
+
+{% endblock %}
