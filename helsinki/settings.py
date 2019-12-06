@@ -22,6 +22,7 @@ if DEBUG:
 # Application definition
 
 INSTALLED_APPS = [
+    'blog.apps.BlogConfig',
     'product.apps.ProductConfig',
     'account.apps.AccountConfig',
     'django.contrib.admin',

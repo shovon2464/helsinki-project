@@ -31,6 +31,7 @@ class Product(models.Model):
     def present_price(self):
         discount_percent = 100-self.discount
         p_price = self.price*(discount_percent/100)
+        p_price = str(p_price)+" Taka (Regular price: " + str(self.price)
         return p_price
 
     def pub_date_smart(self):
@@ -48,16 +49,3 @@ class Review(models.Model):
     reviewed_by = models.ForeignKey(User, on_delete=models.CASCADE)
     reviewed_for = models.ForeignKey(Product, on_delete=models.CASCADE)
     review = models.TextField(max_length=1000)
-
-
-
-
-
-class ReviewManager(models.Manager):
-    def create_review(self, reviewed_by, reviewed_for, review):
-        review_detail = self.model(
-        reviewed_by = reviewed_by,
-        reviewed_for = reviewed_for,
-        review = review
-        )
-        review_detail.save(using=self._db)
