@@ -39,14 +39,18 @@
           border-radius:50%;
           border:1.5px solid grey;
        }
-
-
-         }
+       .image--cover2 {
+           object-fit:cover;
+           width:45px;
+           height:45px;
+           border-radius:50%;
+        }
 
     </style>
     <!-- Custom styles for this template -->
     <link href="album.css" rel="stylesheet">
     <link rel="icon" href="{% static "topicon.png" %}" />
+    <link href="album.css" rel="stylesheet">
   </head>
 
 
@@ -61,7 +65,8 @@
         {% if user.is_authenticated %}
         <div class="navbar-nav ml-auto">
           <a class="nav-item nav-link" href="">Blog</a>
-          <a class="nav-item nav-link" href="">Products</a>
+          <a class="nav-item nav-link" href="{% url 'product_home' %}">Products</a>
+          <a class="nav-item nav-link" href="">Orders</a>
         </div>
         {% endif %}
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -91,15 +96,16 @@
       </div>
       </nav>
     </header>
-
+     <body>
     <div class = "container">
       {% block content %}
       {% endblock %}
     </div>
+  </body>
 
     <footer class="text-muted">
       <div class="container text-center">
-        <p> ©️ Helsinki.com {% now "Y" %}</p>
+        <p> ©️ Helsinki.com {% now "Y" %} </p>
       </div>
     </footer>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

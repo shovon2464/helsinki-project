@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<title>{{product.name}}</title>
+
+<div class = "container">
+  <div class ="row">
+    <div class = "col-5">
+      <img src="{{ product.image.url }}" class= "img-fluid">
+    </div>
+    <div class = "col-7">
+      <h5>{{product.name}}</h5>
+      <hr>
+      <br/>
+      <p class="card-text">{{ product.intro }}</p>
+      <p class="card-text">Price: {{product.present_price}} Taka</p>
+      <p class="card-text">Details: {{product.details}}</p>
+      <p class="card-text">Offer:{{product.offer}}</p>
+    </div>
+  </div>
+
+  <hr>
+  <br/>
+  <h4>Reviews:</h4>
+
+  <div class ="row">
+    {% for review_detail in reviews %}
+    <div class = "col-2">
+      <img src="{{ review_detail.reviewed_by.profile_picture.url }}" class= "img-fluid image--cover2">
+    </div>
+    <div class = "col-10">
+      <h5>{{review_detail.reviewed_by.full_name}}:</h5>
+      <h6> {{ review_detail.review }}<h6>
+        <hr>
+    </div>
+    {% endfor %}
+  </div>
+  <div class ="row">
+    <div class = "col-2">
+      <img src="{{ user.profile_picture.url }}" class= "img-fluid image--cover2">
+    </div>
+    <div class = "col-10">
+      <form method="POST" action = "{% url 'comment_product' product.id %}">
+        {% csrf_token %}
+        <h5>{{ user.full_name }}</h5>
+        <br/>
+        <input type = "text" style="height: 100px; width: 86%;" name = "comment_product">
+        <br/>
+        <br/>
+        <input class = "btn btn-primary" type = "submit" value = "Comment" />
+      </form>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+{% endblock %}

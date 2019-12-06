@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from . models import Account
 from django.contrib import auth
+from django.contrib.auth.decorators import login_required
 User = get_user_model()
 
 def signup(request):
@@ -57,9 +58,11 @@ def logout(request):
         auth.logout(request)
         return redirect('home')
 
+
 def profile(request, user_id):
     user = get_object_or_404(User, pk=user_id)
     return render(request, 'account/profile.html', {'user':user})
+
 
 def edit(request, user_id):
     user = get_object_or_404(User, pk=user_id)

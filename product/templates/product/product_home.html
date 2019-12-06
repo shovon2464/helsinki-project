@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<title>Products</title>
+
+
+<div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row">
+
+        {% for product in products %}
+        <div class="col-md-4" onclick="window.location='{% url 'detail' product.id %}';" style="cursor: pointer;">
+          <div class="card mb-4 shadow-sm">
+              <img class="card-img-top img-fluid" src="{{product.image.url}}" />
+            <div class="card-body">
+              <a href="{% url 'detail' product.id %}"><h5 class="card-text">{{ product.name }}</h5></a>
+              <br/>
+              <p class="card-text">{{ product.intro }}</p>
+              <p class="card-text">Price: {{product.present_price}} Taka</p>
+              <p class="card-text">Offer:{{product.offer}}</p>
+            </div>
+            <div class='card-footer text-center'>
+             <a href="#" class="btn btn-success">Add to Cart</a>
+            </div>
+          </div>
+        </div>
+  
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+
+
+{% endblock %}
