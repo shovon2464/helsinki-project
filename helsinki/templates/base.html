@@ -79,7 +79,7 @@
             <div class="navbar-nav ">
             <div class="navbar-nav ml-auto">
             <a class="nav-item nav-link" href="{% url 'profile' user.id %}"><img src = "{{ user.profile_picture.url }}" class="image--cover"/></a>
-            <a class="nav-item nav-link" href=""><img src = "{% static 'cart.png' %}" class="d-inline-block align-top" height = 37px width = 37px></a>
+            <a class="nav-item nav-link" href="{% url 'cart_home' %}"><img src = "{% static 'cart.png' %}" class="d-inline-block align-top" height = 37px width = 37px></a>
             <a class="nav-item nav-link" href="javascript:{document.getElementById('logout').submit()}" onclick="">Logout</a>
             <form id="logout" method="POST" action="{% url 'logout' %}">
               {% csrf_token %}

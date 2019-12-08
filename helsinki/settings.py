@@ -22,6 +22,7 @@ if DEBUG:
 # Application definition
 
 INSTALLED_APPS = [
+    'cart.apps.CartConfig',
     'blog.apps.BlogConfig',
     'product.apps.ProductConfig',
     'account.apps.AccountConfig',

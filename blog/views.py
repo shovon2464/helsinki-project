@@ -35,5 +35,4 @@ def comment_blog(request, blog_id):
 
 @login_required
 def reach_product(request, product_id):
-    print(product_id)
     return redirect('/product/'+str(product_id))

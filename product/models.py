@@ -44,6 +44,11 @@ class Product(models.Model):
         else:
             return 'Regular Product'
 
+    def p_price(self):
+        discount_percent = 100-self.discount
+        p_price = self.price*(discount_percent/100)
+        return p_price
+
 
 class Review(models.Model):
     reviewed_by = models.ForeignKey(User, on_delete=models.CASCADE)

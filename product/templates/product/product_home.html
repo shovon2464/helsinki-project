@@ -10,9 +10,9 @@
       <div class="row">
 
         {% for product in products %}
-        <div class="col-md-4" onclick="window.location='{% url 'detail' product.id %}';" style="cursor: pointer;">
+        <div class="col-md-4">
           <div class="card mb-4 shadow-sm">
-              <img class="card-img-top img-fluid" src="{{product.image.url}}" />
+              <a href="{% url 'detail' product.id %}"><img class="card-img-top img-fluid" src="{{product.image.url}}" /></a>
             <div class="card-body">
               <a href="{% url 'detail' product.id %}"><h5 class="card-text">{{ product.name }}</h5></a>
               <br/>
@@ -21,11 +21,15 @@
               <p class="card-text">Offer:{{product.offer}}</p>
             </div>
             <div class='card-footer text-center'>
-             <a href="#" class="btn btn-success">Add to Cart</a>
+              <form method="POST" action = "{% url "add_to_cart2" product.id  %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="number" name="quantity" step="1" style="height: 25px; width: 16%;" placeholder="Quantity" min="0" value="">
+                <input class = "btn btn-success" type = "submit" value = "Add to cart" />
+                </form>
             </div>
           </div>
         </div>
-  
+
         {% endfor %}
       </div>
     </div>
