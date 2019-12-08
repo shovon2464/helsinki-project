@@ -11,4 +11,5 @@ urlpatterns = [
      path('<int:product_id>/', product.views.detail, name='detail'),
      path('<int:product_id>/comment_product/', product.views.comment_product, name='comment_product'),
      path('cart/', include('cart.urls')),
+     path('search/', product.views.search, name='search'),
 ]

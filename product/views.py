@@ -29,3 +29,16 @@ def comment_product(request, product_id):
         temp = request.user
         review_detail = Review.objects.create(reviewed_by=temp, reviewed_for = product, review=request.POST['comment_product'])
         return redirect('/product/'+str(product.id))
+
+@login_required
+def search(request):
+    if request.method == 'POST':
+        products_all = Product.objects.all()
+        products = Product.objects.filter(name__icontains=request.POST['search']) | Product.objects.filter(details__icontains=request.POST['search']) | Product.objects.filter(intro__icontains=request.POST['search'])
+        print(len(products))
+        if products.exists():
+            return render(request, 'product/product_search.html', {'products':products})
+            print('done')
+        else:
+            print('done2')
+            return redirect('/product/all', {'products':products_all})

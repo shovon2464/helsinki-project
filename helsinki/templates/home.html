@@ -2,7 +2,9 @@
 
 {% block content %}
 <title>Helsinki.com</title>
-
-home
+  {% load staticfiles %}
+  <div class='container'>
+<img src = "{% static 'ryzen.jpg' %}" class=""/>
+</div>
 
 {% endblock %}

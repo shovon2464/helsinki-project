@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<title>Products Search</title>
+
+<div class = "container">
+  <form method="POST" class="example" action="{% url 'search' %}">
+    {% csrf_token %}
+  <input type="text" placeholder="Search.." name="search">
+  <input class = "btn btn-success" type = "submit" value = "Search" />
+</form>
+  </div>
+<div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row">
+
+        {% for product in products %}
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+              <a href="{% url 'detail' product.id %}"><img class="card-img-top img-fluid" src="{{product.image.url}}" /></a>
+            <div class="card-body">
+              <a href="{% url 'detail' product.id %}"><h5 class="card-text">{{ product.name }}</h5></a>
+              <br/>
+              <p class="card-text">{{ product.intro }}</p>
+              <p class="card-text">Price: {{product.present_price}} Taka</p>
+              <p class="card-text">Offer:{{product.offer}}</p>
+            </div>
+            <div class='card-footer text-center'>
+              <form method="POST" action = "{% url "add_to_cart2" product.id  %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="number" name="quantity" step="1" style="height: 25px; width: 16%;" placeholder="Quantity" min="0" value="">
+                <input class = "btn btn-success" type = "submit" value = "Add to cart" />
+                </form>
+            </div>
+          </div>
+        </div>
+
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+
+
+{% endblock %}
